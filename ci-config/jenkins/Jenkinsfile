@@ -4,9 +4,9 @@ pipeline {
 
 
     parameters {
-            string(name: 'API_VERSION_P', defaultValue: 'google')
-            string(name: 'APIGEE_ORG_P', defaultValue: 'my-org')
-            string(name: 'APIGEE_TEST_ENV_P', defaultValue: 'test1')
+            string(name: 'API_VERSION_P', defaultValue: 'apigee')
+            string(name: 'APIGEE_ORG_P', defaultValue: 'amer-partner2')
+            string(name: 'APIGEE_TEST_ENV_P', defaultValue: 'test')
             string(name: 'APIGEE_PROD_ENV_P', defaultValue: '')
             string(name: 'TEST_HOST_P', defaultValue: 'api.example.com')
             string(name: 'WORK_DIR_P', defaultValue: 'references/cicd-pipeline')
@@ -39,6 +39,7 @@ pipeline {
     stages {
         stage('Version Check') {
             steps {
+                echo "Checking Version"
                 sh "npm -v"
                 sh "mvn -v"
         }}
@@ -155,6 +156,7 @@ pipeline {
         }
 
         stage('Deploy Edge') {
+          echo 'Deploying to Edge!'
           when {
             expression { env.API_VERSION ==  'apigee'}
           }
