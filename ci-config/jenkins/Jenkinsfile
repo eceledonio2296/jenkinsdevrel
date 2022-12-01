@@ -156,11 +156,12 @@ pipeline {
         }
 
         stage('Deploy Edge') {
-          echo 'Deploying to Edge!'
           when {
             expression { env.API_VERSION ==  'apigee'}
           }
-          steps { dir( "${env.WORK_DIR}" ) {
+          steps { 
+            echo 'Deploying to Edge!'
+            dir( "${env.WORK_DIR}" ) {
 
             sh """
               mvn clean install \
