@@ -93,7 +93,9 @@ pipeline {
         }
 
         stage('Install dependencies') {
-          steps { dir( "${env.WORK_DIR}" ) {
+          steps { 
+            echo "${env.WORK_DIR}"
+            dir( "${env.WORK_DIR}" ) {
 
               sh "npm install --silent --no-fund"
           } }
